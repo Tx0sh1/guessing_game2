@@ -24,12 +24,28 @@ fn main() {
         let result: i32 = guess.trim().parse().expect("Enter a number");
 
         match result.cmp(&secret_number) {
-            Ordering::Less => println!("Too small"),
+            Ordering::Less => {
+                println!("Too small");
+                lives -= 1;
+                println!("lives left: {lives}");
+                if lives == 0 {
+                    println!("Game Over, You are Out Of Lives");
+                    break
+                }
+            },
             Ordering::Equal => {
                 println!("You win");
                 break;
             },
-            Ordering::Greater => println!("Too high")
+            Ordering::Greater => {
+                println!("Too high");
+                lives -= 1;
+                println!("lives left: {lives}");
+                if lives == 0 {
+                    println!("Game Over!, you are out of lives");
+                    break
+                }
+            }
         }
     }
 }
